@@ -1,1 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Background retro: Kombinasi hitam dan kuning */
+    background: linear-gradient(135deg, #000000, #ffcc00);
+    font-family: 'Courier New', Courier, monospace; /* Font kesan retro */
+}
 
+.glass-card {
+    /* Background hitam transparan untuk efek glass */
+    background: rgba(0, 0, 0, 0.4); 
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid #ffcc00; /* Border kuning retro */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px 0 rgba(255, 204, 0, 0.3);
+    color: #ffcc00; /* Teks kuning */
+    text-align: center;
+    width: 300px;
+}
+
+h1 { 
+    margin-top: 0; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
