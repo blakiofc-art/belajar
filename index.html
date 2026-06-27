@@ -28,6 +28,49 @@
             
             <button class="btn-primary" onclick="alert('Menghubungkan ke Blakiofc...')">Hubungi Kami</button>
         </section>
+        <section class="glass-card" style="margin-top: 20px;">
+    <h2>Kalkulator Target Tabungan</h2>
+    <div class="input-group">
+        <input type="number" id="target" placeholder="Target Uang (Rp)">
+        <input type="number" id="bulan" placeholder="Jumlah Bulan">
+        <button class="btn-primary" onclick="hitungTabungan()">Hitung</button>
+    </div>
+    <div id="hasil" style="margin-top: 20px; font-weight: bold;"></div>
+</section>
     </main>
+    <script>
+    // 1. Memuat data saat halaman pertama kali dibuka
+    window.onload = function() {
+        const savedData = localStorage.getItem('tabunganData');
+        if (savedData) {
+            document.getElementById('hasil').innerHTML = `Riwayat Terakhir: ${savedData}`;
+        }
+    };
+
+    function hitungTabungan() {
+        const target = document.getElementById('target').value;
+        const bulan = document.getElementById('bulan').value;
+        const hasil = document.getElementById('hasil');
+
+        if (target && bulan) {
+            const perBulan = (target / bulan).toLocaleString('id-ID');
+            const pesan = `Anda perlu menabung: Rp ${perBulan} / bulan`;
+            
+            // 2. Menampilkan hasil
+            hasil.innerHTML = pesan;
+            
+            // 3. Menyimpan ke Local Storage agar tidak hilang saat refresh
+            localStorage.setItem('tabunganData', pesan);
+        } else {
+            alert("Harap isi semua kolom!");
+        }
+    }
+    
+    // Opsional: Fungsi untuk reset data
+    function resetData() {
+        localStorage.removeItem('tabunganData');
+        document.getElementById('hasil').innerHTML = "Data telah dihapus.";
+    }
+</script>
 </body>
 </html>
