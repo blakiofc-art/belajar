@@ -85,3 +85,19 @@ body {
     from { opacity: 0; transform: translateY(50px); }
     to { opacity: 1; transform: translateY(0); }
 }
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--gold);
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+input::placeholder { color: rgba(255, 255, 255, 0.5); }
