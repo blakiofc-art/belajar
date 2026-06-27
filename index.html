@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism UI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Background gradasi agar efek glass terlihat jelas */
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            font-family: sans-serif;
+        }
 
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2); /* Transparansi */
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px); /* Kunci dari efek blur */
+            -webkit-backdrop-filter: blur(10px); /* Support Safari */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            color: white;
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 { margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>Glass Effect</h1>
+        <p>Ini adalah contoh kartu dengan gaya glassmorphism yang sederhana.</p>
+    </div>
+
+</body>
+</html>
