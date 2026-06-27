@@ -28,49 +28,58 @@
             
             <button class="btn-primary" onclick="alert('Menghubungkan ke Blakiofc...')">Hubungi Kami</button>
         </section>
+
         <section class="glass-card" style="margin-top: 20px;">
-    <h2>Kalkulator Target Tabungan</h2>
-    <div class="input-group">
-        <input type="number" id="target" placeholder="Target Uang (Rp)">
-        <input type="number" id="bulan" placeholder="Jumlah Bulan">
-        <button class="btn-primary" onclick="hitungTabungan()">Hitung</button>
-    </div>
-    <div id="hasil" style="margin-top: 20px; font-weight: bold;"></div>
-</section>
+            <h2>Kalkulator Target Tabungan</h2>
+            <div class="input-group">
+                <input type="number" id="target" placeholder="Target Uang (Rp)">
+                <input type="number" id="bulan" placeholder="Jumlah Bulan">
+                <button class="btn-primary" onclick="hitungTabungan()">Hitung Sekarang</button>
+            </div>
+            <div id="hasil" style="margin-top: 20px; font-weight: bold; color: var(--gold);"></div>
+            <button class="btn-secondary" onclick="resetData()">Hapus Riwayat</button>
+        </section>
     </main>
+
     <script>
-    // 1. Memuat data saat halaman pertama kali dibuka
-    window.onload = function() {
-        const savedData = localStorage.getItem('tabunganData');
-        if (savedData) {
-            document.getElementById('hasil').innerHTML = `Riwayat Terakhir: ${savedData}`;
-        }
-    };
+        // Memuat data saat halaman dibuka
+        window.onload = function() {
+            const savedData = localStorage.getItem('tabunganData');
+            if (savedData) {
+                document.getElementById('hasil').innerHTML = `Riwayat: ${savedData}`;
+            }
+        };
 
-    function hitungTabungan() {
-        const target = document.getElementById('target').value;
-        const bulan = document.getElementById('bulan').value;
-        const hasil = document.getElementById('hasil');
+        function hitungTabungan() {
+            const target = document.getElementById('target').value;
+            const bulan = document.getElementById('bulan').value;
+            const hasil = document.getElementById('hasil');
 
-        if (target && bulan) {
-            const perBulan = (target / bulan).toLocaleString('id-ID');
-            const pesan = `Anda perlu menabung: Rp ${perBulan} / bulan`;
-            
-            // 2. Menampilkan hasil
-            hasil.innerHTML = pesan;
-            
-            // 3. Menyimpan ke Local Storage agar tidak hilang saat refresh
-            localStorage.setItem('tabunganData', pesan);
-        } else {
-            alert("Harap isi semua kolom!");
+            if (target > 0 && bulan > 0) {
+                const perBulan = (target / bulan).toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR'
+                });
+                const pesan = `Anda perlu menabung: ${perBulan} / bulan`;
+                
+                hasil.innerHTML = pesan;
+                hasil.style.opacity = 0;
+                setTimeout(() => { hasil.style.opacity = 1; }, 100);
+                
+                localStorage.setItem('tabunganData', pesan);
+            } else {
+                alert("Mohon masukkan angka yang valid!");
+            }
         }
-    }
-    
-    // Opsional: Fungsi untuk reset data
-    function resetData() {
-        localStorage.removeItem('tabunganData');
-        document.getElementById('hasil').innerHTML = "Data telah dihapus.";
-    }
-</script>
+        
+        function resetData() {
+            if(confirm("Yakin ingin menghapus riwayat?")) {
+                localStorage.removeItem('tabunganData');
+                document.getElementById('hasil').innerHTML = "";
+                document.getElementById('target').value = "";
+                document.getElementById('bulan').value = "";
+            }
+        }
+    </script>
 </body>
 </html>
